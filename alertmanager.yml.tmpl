@@ -1,0 +1,19 @@
+global:
+  resolve_timeout: $RESOLVE_TIMEOUT
+  smtp_smarthost: "$SMTP_HOST"
+  smtp_auth_username: "$SMTP_USERNAME"
+  smtp_auth_password: "$SMTP_PASSWORD"
+  smtp_require_tls: $SMTP_REQUIRE_TLS
+  smtp_from: "$FROM"
+
+route:
+  receiver: "email"
+  repeat_interval: $REPEAT_INTERVAL
+
+receivers:
+  - name: "email"
+    email_configs:
+      - to: "$TO"
+        headers:
+          From: "$FROM_TITLE <$FROM>"
+          Subject: "[ALERT] [{{ .Status | toUpper }}] {{ .CommonAnnotations.title }}"

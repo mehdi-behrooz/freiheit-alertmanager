@@ -1,0 +1,13 @@
+services:
+  freiheit-alertmanager:
+    build: .
+    container_name: freiheit-alertmanager
+    ports:
+      - 9093:9093
+    environment:
+      - SMTP_HOST=smtp-host.com:587
+      - SMTP_USERNAME=admin
+      - SMTP_PASSWORD=123456
+      - FROM=from@gmail.com
+      - FROM_TITLE=John Doe
+      - TO=to@gmail.com
